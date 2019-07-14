@@ -22,7 +22,7 @@
             $(".PlayButton").click(function(){
                 if(!playEnable){
                     $(".PlayButton").attr("src","pause-solid.svg");
-                    Timer = setInterval(TimeCount,10);
+                    Timer = setInterval(TimeCount,1000);
                     playEnable = true;
                 }else{
                     $(".PlayButton").attr("src","play-solid.svg");
