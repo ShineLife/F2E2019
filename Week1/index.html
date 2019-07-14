@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery.min.js"></script>
+    <title>Pomodoro</title>
+    <script>
+        let deg = 360;
+        let second = 25 * 60;
+        let distance = deg / second;
+        let playEnable = false;
+        let Timer = 0;
+        _deg(deg);
+        let JohnCena = new Audio("johncena.mp3");
+        $(function(){
+            let min = Math.floor((second / 60)) < 10?"0" + Math.floor((second / 60)):Math.floor((second / 60));
+            let sec = second % 60 < 10?"0" + (second % 60):second % 60;
+            document.getElementsByClassName("TimeSpan")[0].innerText = min + ":" + sec;
+            $(".PlayButton").click(function(){
+                if(!playEnable){
+                    $(".PlayButton").attr("src","pause-solid.svg");
+                    Timer = setInterval(TimeCount,10);
+                    playEnable = true;
+                }else{
+                    $(".PlayButton").attr("src","play-solid.svg");
+                    clearInterval(Timer);
+                    playEnable = false;
+                }
+            })
+        })
+        function TimeCount(){
+            _deg(deg - distance);
+            second -= 1;
+            deg -= distance;
+            min = Math.floor((second / 60)) < 10?"0" + Math.floor((second / 60)):Math.floor((second / 60));
+            sec = second % 60 < 10?"0" + (second % 60):second % 60;
+            document.getElementsByClassName("TimeSpan")[0].innerText = min + ":" + sec;
+            console.log(second);
+            if(second == 0){
+                JohnCena.play();
+                deg = 360;
+                second = 25 * 60;
+                _deg(deg);
+                min = Math.floor((second / 60)) < 10?"0" + Math.floor((second / 60)):Math.floor((second / 60));
+                sec = second % 60 < 10?"0" + (second % 60):second % 60;
+                document.getElementsByClassName("TimeSpan")[0].innerText = min + ":" + sec;
+                $(".PlayButton").attr("src","play-solid.svg");
+                clearInterval(Timer);
+                playEnable = false;
+            }
+        }
+        function _deg(deg){
+            if(deg<180){
+                $('head').append(
+                    "<style>"+
+                    ".pie{width:300px;margin-left:300px;border-radius:0 300px 300px 0;}"+
+                    ".pie:before{transform:rotate("+(deg-90)+"deg);}"+
+                    ".pie:after{opacity:0;}"+
+                    "</style>"
+                );
+                }else{
+                $('head').append(
+                    "<style>"+
+                    ".pie{width:600px;margin-left:0px;border-radius:0;}"+
+                    ".pie:before{transform:rotate("+(deg-90)+"deg);}"+
+                    ".pie:after{opacity:1;}"+
+                    "</style>"
+                );
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="DashBoard">
+        <div class="pie"></div>
+        <img src="play-solid.svg" class="PlayButton" alt="">
+        <h1 class="TimeSpan">25:00</h1>
+        <div class="SplitLine"></div>
+        <div class="RightDiv">
+            <h1 class="width50 Shadow active">● This is first session</h1>
+            <h1 class="width50 Shadow">● This is second session</h1>
+            <h1 class="width50 Shadow">● This is third session</h1>
+            <h1 class="width50 Shadow">● This is 4th session</h1>
+            <h1 class="width50 Shadow">● This is 5th session</h1>
+            <h1 class="width50 Shadow">● This is 6th session</h1>
+            <h1 class="width50 Shadow">● This is 7th session</h1>
+            <h1 class="width50 Shadow">● This is 8th session</h1>
+        </div>
+    </div>
+</body>
+</html>

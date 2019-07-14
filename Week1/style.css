@@ -1,0 +1,122 @@
+body{
+    height:100vh;
+    overflow:hidden;
+    margin:0;
+    background:url(Background-Sky.jpg) no-repeat fixed center;
+    background-size: cover;
+    font-family: 'Noto Sans TC';
+}
+.DashBoard{
+    height:100%;
+    width:100%;
+    position:relative;
+}
+.SplitLine{
+    width: 20px;
+    height: 80vh;
+    position: fixed;
+    top: 10vh;
+    left: 50%;
+    background: white;
+    border-radius: 5px;
+    animation:RGB 3s linear infinite;
+}
+.pie{
+  top:150px;
+  left:200px;
+  position:absolute;
+  width:300px;
+  height:600px;
+  margin-left:300px;
+  overflow:hidden;
+  border-radius:0 300px 300px 0;
+  animation:RGB 3s linear infinite;
+}
+.pie:before,.pie:after{
+  content:"";
+  box-sizing:border-box;
+  position:absolute;
+  top:0;
+  right:0;  
+  width:600px;
+  height:300px;
+  border-style:solid;
+  border-color:white;
+  border-width:6px 6px 0;
+  border-radius:300px 300px 0 0;
+  transform-origin:300px 300px;
+}
+.pie:before{
+  z-index:1;
+  /* transition:transform 1s; */
+  transform:rotate(-90deg);
+}
+.pie:after{
+  opacity:0;
+  z-index:2;
+  /* transition:transform 1s; */
+  transform:rotate(90deg);
+}
+.PlayButton{
+    position: absolute;
+    width:20%;
+    height:20%;
+    top:25%;
+    left:16%;
+    border:none;
+    animation:RGB 3s linear infinite;
+}
+.TimeSpan{
+    color:white;
+    font-weight: bold;
+    font-size: 11em;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    animation:RGB 3s linear infinite;
+}
+@keyframes RGB{
+    from{
+        filter:drop-shadow(0 0 10px #ffff00);
+    }
+    33%{
+        filter:drop-shadow(0 0 10px #ff00ff);
+    }
+    66%{
+        filter:drop-shadow(0 0 10px #00ffff);
+    }
+    to{
+        filter:drop-shadow(0 0 10px #ffff00);
+    }
+}
+/* noto-sans-tc-regular - latin_chinese-traditional */
+@font-face {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/noto-sans-tc-v8-latin_chinese-traditional-regular.eot'); /* IE9 Compat Modes */
+    src: local('Noto Sans TC Regular'), local('NotoSansTC-Regular'),
+            url('./fonts/noto-sans-tc-v8-latin_chinese-traditional-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('./fonts/noto-sans-tc-v8-latin_chinese-traditional-regular.woff2') format('woff2'), /* Super Modern Browsers */
+            url('./fonts/noto-sans-tc-v8-latin_chinese-traditional-regular.woff') format('woff'), /* Modern Browsers */
+            url('./fonts/noto-sans-tc-v8-latin_chinese-traditional-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+            url('./fonts/noto-sans-tc-v8-latin_chinese-traditional-regular.svg#NotoSansTC') format('svg'); /* Legacy iOS */
+}
+.RightDiv{
+    width: 50%;
+    height: 80vh;
+    position: fixed;
+    top: 10vh;
+    left: 55%;
+    color:white;
+}
+.Shadow{
+    padding:10px;
+    animation:RGB 3s linear infinite;
+}
+.active{
+    border:10px solid white;
+}
+.width50{
+    width: 50%;
+}
